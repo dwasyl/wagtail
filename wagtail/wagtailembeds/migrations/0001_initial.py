@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             name='Embed',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
-                ('url', models.URLField()),
+                ('url', models.URLField(max_length=191)),
                 ('max_width', models.SmallIntegerField(null=True, blank=True)),
                 (
                     'type',
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('title', models.TextField(blank=True)),
                 ('author_name', models.TextField(blank=True)),
                 ('provider_name', models.TextField(blank=True)),
-                ('thumbnail_url', models.URLField(null=True, blank=True)),
+                ('thumbnail_url', models.URLField(max_length=191, null=True, blank=True)),
                 ('width', models.IntegerField(null=True, blank=True)),
                 ('height', models.IntegerField(null=True, blank=True)),
                 ('last_updated', models.DateTimeField(auto_now=True)),

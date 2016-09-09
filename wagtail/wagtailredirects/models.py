@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Redirect(models.Model):
-    old_path = models.CharField(verbose_name=_("redirect from"), max_length=255, db_index=True)
+    old_path = models.CharField(verbose_name=_("redirect from"), max_length=191, db_index=True)
     site = models.ForeignKey(
         'wagtailcore.Site',
         verbose_name=_('site'),
@@ -25,7 +25,7 @@ class Redirect(models.Model):
         null=True, blank=True,
         on_delete=models.CASCADE
     )
-    redirect_link = models.URLField(verbose_name=_("redirect to any URL"), blank=True)
+    redirect_link = models.URLField(max_length=191, verbose_name=_("redirect to any URL"), blank=True)
 
     @property
     def title(self):

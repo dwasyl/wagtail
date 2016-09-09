@@ -57,7 +57,7 @@ class SiteManager(models.Manager):
 
 @python_2_unicode_compatible
 class Site(models.Model):
-    hostname = models.CharField(verbose_name=_('hostname'), max_length=255, db_index=True)
+    hostname = models.CharField(verbose_name=_('hostname'), max_length=191, db_index=True)
     port = models.IntegerField(
         verbose_name=_('port'),
         default=80,
@@ -68,7 +68,7 @@ class Site(models.Model):
     )
     site_name = models.CharField(
         verbose_name=_('site name'),
-        max_length=255,
+        max_length=191,
         null=True,
         blank=True,
         help_text=_("Human-readable name for the site.")
@@ -299,7 +299,7 @@ class AbstractPage(MP_Node):
 class Page(six.with_metaclass(PageBase, AbstractPage, index.Indexed, ClusterableModel)):
     title = models.CharField(
         verbose_name=_('title'),
-        max_length=255,
+        max_length=191,
         help_text=_("The page title as you'd like it to be seen by the public")
     )
     # use django 1.9+ SlugField with unicode support
@@ -307,13 +307,13 @@ class Page(six.with_metaclass(PageBase, AbstractPage, index.Indexed, Clusterable
         slug = models.SlugField(
             verbose_name=_('slug'),
             allow_unicode=True,
-            max_length=255,
+            max_length=191,
             help_text=_("The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/")
         )
     else:
         slug = models.SlugField(
             verbose_name=_('slug'),
-            max_length=255,
+            max_length=191,
             help_text=_("The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/")
         )
     content_type = models.ForeignKey(
@@ -341,7 +341,7 @@ class Page(six.with_metaclass(PageBase, AbstractPage, index.Indexed, Clusterable
 
     seo_title = models.CharField(
         verbose_name=_("page title"),
-        max_length=255,
+        max_length=191,
         blank=True,
         help_text=_("Optional. 'Search Engine Friendly' title. This will appear at the top of the browser window.")
     )
@@ -1779,7 +1779,7 @@ class PagePermissionTester(object):
 
 class PageViewRestriction(models.Model):
     page = models.ForeignKey('Page', verbose_name=_('page'), related_name='view_restrictions', on_delete=models.CASCADE)
-    password = models.CharField(verbose_name=_('password'), max_length=255)
+    password = models.CharField(verbose_name=_('password'), max_length=191)
 
     class Meta:
         verbose_name = _('page view restriction')
@@ -1798,7 +1798,7 @@ class Collection(MP_Node):
     """
     A location in which resources such as images and documents can be grouped
     """
-    name = models.CharField(max_length=255, verbose_name=_('name'))
+    name = models.CharField(max_length=191, verbose_name=_('name'))
 
     objects = CollectionManager()
 
