@@ -546,7 +546,7 @@ class PageChooserBlock(ChooserBlock):
 
     def render_basic(self, value, context=None):
         if value:
-            return format_html('<a href="{0}">{1}</a>', value.url, value.title)
+            return format_html('<a href="{0}">{1}</a>', value.specific.url, value.title)
         else:
             return ''
 
